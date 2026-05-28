@@ -1,83 +1,79 @@
 # Password Generator CLI
 
-This is the starting point for the **Password Generator CLI** assignment. The goal of this project is to create a command-line application that generates random passwords based on user-specified flags.
+A Node.js CLI app.
+It creates random passwords.
+You control output with flags.
 
-For full project details, requirements, and grading criteria, refer to the [assignment sheet](https://menglishca.github.io/keyin-course-notes/fullstack/qaps/qap-1/).
+## Quick Start
 
-## Setup Instructions
-1. **Accept the GitHub Assignment** (link provided in the assignment sheet).
+Install packages:
 
-1. **Name your new repository** and choose its visibility (public or private).
+```bash
+npm install
+```
 
-1. Once your repository is created, **clone your new repo** to your local machine:
-   ```bash
-   git clone <your-new-repo-url>
-   ```
+Run app:
 
-1. Navigate into the project directory and install the necessary dependencies:
+```bash
+node passwordGenerator.js [flags]
+```
 
-   ```bash
-   cd <your-new-repo-name>
-   npm install
-   ```
+Run tests:
 
-2. **Run the app:**
+```bash
+npm test
+```
 
-   ```bash
-   node passwordGenerator.js [flags]
-   ```
+## Flags
 
-   Replace `[flags]` with any supported flags such as `--length`, `--numbers`, `--lowercase` or `--uppercase`.
+- `--help`
+Show help message.
 
-3. **Run the tests:**
+- `--length <number>`
+Set password length.
+Must be a positive integer.
 
-   ```bash
-   npm test
-   ```
+- `--lowercase`
+Use lowercase letters.
 
-   This will run the unit tests for the application.
+- `--uppercase`
+Use uppercase letters.
 
-4. You can now begin working on your project, adding your own code and committing your changes as you go:
+- `--numbers`
+Use digits.
 
-   ```bash
-   git add .
-   git commit -m "First commit"
-   git push origin main
-   ```
+## Defaults
 
-## Development Guidelines
+- No `--length` flag:
+Length defaults to `8`.
 
-1. **Flags to Support**:
+- No character flags:
+Lowercase is used by default.
 
-   * `--help`: displays a help message explaining how to use the application and its flags.
-   * `--length <number>`: sets the password length.
-   * `--lowercase`: includes lowercase letters.
-   * `--uppercase`: includes lowercase letters.
-   * `--numbers`: includes numbers.
+## Examples
 
-2. **Default Behavior**:
+```bash
+node passwordGenerator.js
+node passwordGenerator.js --length 12 --uppercase --numbers
+node passwordGenerator.js --length 16 --lowercase --uppercase --numbers
+node passwordGenerator.js --help
+```
 
-   * If no `--length` flag is provided, default to a length of 8.
-   * If none of `--uppercase`, `--lowercase` or `--numbers` are provided, default to just including lowercase letters.
+## Error Handling
 
-3. **Error Handling**:
+Prints errors for:
 
-   * Display an error if no character types are selected.
-   * Handle invalid input gracefully with informative error messages.
+- Unknown flags.
+- Missing value after `--length`.
+- Invalid `--length` values.
+- Unexpected non-flag arguments.
 
-4. **Testing**:
+## Testing
 
-   * Write unit tests for the `generatePassword` function.
-   * Tests must be written on a separate branch and merged into the main branch via a pull request.
-   * All tests should pass before submission.
+Unit tests verify flag use and 
 
-## Submission Guidelines
+Run tests:
 
-* Ensure the application runs correctly from the command line using `node passwordGenerator.js`.
-* Ensure all tests pass using `npm test`.
-* Submit your GitHub repository link via Teams under the assignment.
-
-## Notes
-
-* You must update this README to meet the assignment’s requirement for a `README.md` describing your project.
-* Avoid committing unnecessary files such as `node_modules`.
+```bash
+npm test
+```
